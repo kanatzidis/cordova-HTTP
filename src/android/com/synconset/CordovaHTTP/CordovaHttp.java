@@ -37,6 +37,7 @@ public abstract class CordovaHttp {
     private static AtomicBoolean acceptAllCerts = new AtomicBoolean(false);
     
     private String urlString;
+    private String stringparams;
     private Map<?, ?> params;
     private Map<String, String> headers;
     private CallbackContext callbackContext;
@@ -47,7 +48,14 @@ public abstract class CordovaHttp {
         this.headers = headers;
         this.callbackContext = callbackContext;
     }
-    
+
+    public CordovaHttp(String urlString, String params, Map<String, String> headers, CallbackContext callbackContext) {
+        this.urlString = urlString;
+        this.stringparams = params;
+        this.headers = headers;
+        this.callbackContext = callbackContext;
+    }
+
     public static void enableSSLPinning(boolean enable) {
         sslPinning.set(enable);
         if (enable) {
@@ -68,6 +76,10 @@ public abstract class CordovaHttp {
     
     protected Map<?, ?> getParams() {
         return this.params;
+    }
+
+    protected String getStringParams() {
+      return this.stringparams;
     }
     
     protected Map<String, String> getHeaders() {
