@@ -1799,7 +1799,7 @@ public class HttpRequest {
     }
   }
 
-  public byte[] body() throws HttpRequestException {
+  public byte[] bodyBytes() throws HttpRequestException {
     final ByteArrayOutputStream output = byteStream();
     try {
       copy(buffer(), output);
