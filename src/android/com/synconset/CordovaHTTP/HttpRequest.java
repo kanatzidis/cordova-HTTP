@@ -1799,6 +1799,17 @@ public class HttpRequest {
     }
   }
 
+  public byte[] body() throws HttpRequestException {
+    final ByteArrayOutputStream output = byteStream();
+    try {
+      copy(buffer(), output);
+      return output.toByteArray();
+    } catch (IOException e) {
+      throw new HttpRequestException(e);
+    }
+
+  }
+
   /**
    * Get response as {@link String} using character set returned from
    * {@link #charset()}

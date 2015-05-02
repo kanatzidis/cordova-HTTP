@@ -32,7 +32,7 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
             request.send(this.getStringParams());
             //request.form(this.getParams());
             int code = request.code();
-            String body = request.body(CHARSET);
+            byte[] body = request.body();
             JSONObject response = new JSONObject();
             response.put("status", code);
             if (code >= 200 && code < 300) {
