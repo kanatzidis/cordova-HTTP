@@ -5,7 +5,7 @@ package com.synconset;
 
 import java.net.UnknownHostException;
 import java.util.Map;
-import java.util.Base64;
+import javax.xml.bind.DataConverter;
 
 import org.apache.cordova.CallbackContext;
 import org.json.JSONException;
@@ -37,7 +37,7 @@ public class CordovaHttpPost extends CordovaHttp implements Runnable {
             JSONObject response = new JSONObject();
             response.put("status", code);
             if (code >= 200 && code < 300) {
-                response.put("data", Base64.encodeBase64String(body));
+                response.put("data", DataCoverter.printBase64Binary(body));
                 this.getCallbackContext().success(response);
             } else {
                 response.put("error", body);
